@@ -23,11 +23,14 @@ public class UserService {
 				.userName(userDto.getUserName())
 				.password(userDto.getPassword())
 				.email(userDto.getEmail())
-				.lastWeek(0)
-				.currentWeek(0)
-				.point(0)
 				.build();
 		userRepository.save(user);
+		
+	}
+	
+	public UserEntity authenticate (String email, String password) {
+		
+		return userRepository.findByEmailAndPassword(email, password).orElse(null);
 		
 	}
 

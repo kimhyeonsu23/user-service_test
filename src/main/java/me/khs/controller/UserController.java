@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.khs.dto.UserDto;
-import me.khs.entity.UserEntity;
 import me.khs.service.UserService;
 
 @RestController
@@ -23,8 +22,8 @@ public class UserController {
 		
 	}
 	
-	
-	@PostMapping("/signup")
+	// 회원가입
+	@PostMapping("/createUser")
 	public UserDto createUser(@RequestParam String userName, @RequestParam String password, @RequestParam String email) {
 		
 		UserDto userDto = new UserDto(userName, password, email);

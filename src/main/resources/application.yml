@@ -15,12 +15,14 @@ spring:
   cloud:
     config:
       enabled: false
-# gateway 설정을 끄기.
+# gateway 설정
     gateway:
-      enabled: false
-# eureka 설정 끄기.
+      enabled: true
+# eureka 설정
     discovery:
-      enabled: false
+      enabled: true
+  application:
+    name: user-service
 # circuit-breaker 설정 끄기.
     circuitbreaker:
       enabled: false
