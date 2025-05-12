@@ -2,6 +2,7 @@ package me.khs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +32,24 @@ public class UserController {
 		return userDto;
 		
 	}
+	
+//	@PostMapping("/login")
+//	public String logIn(@RequestBody LoginDto loginDto) {
+//		
+//		boolean result = userService.login(userDto.getEmail(), userDto.getPassword());
+//		
+//		if (result) {
+//			
+//			return "login success !";
+//			
+//		}
+//		else {
+//			
+//			return "login error !";
+//			
+//		}
+//	
+//		
+//	}
 
 }

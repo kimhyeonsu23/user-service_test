@@ -28,10 +28,5 @@ public class UserService {
 		
 	}
 	
-	public UserEntity authenticate (String email, String password) {
-		
-		return userRepository.findByEmailAndPassword(email, password).orElse(null);
-		
-	}
-
+	
 }
