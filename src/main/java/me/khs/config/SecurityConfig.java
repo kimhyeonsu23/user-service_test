@@ -49,7 +49,7 @@ public class SecurityConfig {
 			// 모든 요청에 대해 usrnamePasswordAuthenticiatoinFilter 이전에 jwtAuthenticaitonFilter를 동작하게 등록함.
 			// 클라이언트가 "Authorization: Bearer <token>"을 붙여서 보내면 jwtAuthenticaitonFilter 필터가 먼저 실행되고 
 			// -> 토큰을 해석해서 authentica.iton 객체를 만듦.
-			// -> 전역 봉나 컨텍스트 (SecurityContextHolder)에 등록해줌.
+			// -> 전역 보안 컨텍스트 (SecurityContextHolder)에 등록해줌.
 			// -> 이게 있어야 나중에 @AuthenticaitonPrincipal도 잘 동작함.
 		
 		return http.build();

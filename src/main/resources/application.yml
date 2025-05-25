@@ -22,7 +22,7 @@ spring:
       enabled: false
 # eureka 설정
     discovery:
-      enabled: true
+      enabled: false
   application:
     name: user-service_test
 # circuit-breaker 설정 끄기.
