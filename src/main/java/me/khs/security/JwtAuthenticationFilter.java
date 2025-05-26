@@ -42,6 +42,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			//authentication 객체를 spring security의 전역보안 컨텍스트에 저장하는 코드 (이게있어야 컨트롤러에서 authenticaitonprincipal을 통해 유저 정보를 꺼낼 수 있음)
+			// getContext() : 현재 요청의 보안 컨텍스트(security context)를 가져오는 메서드 => 이 컨텍스트 안에는 로그인한 사용자의 인증 정보 (authentication)이 들어있음 -> 누가 요했는지 담은 객체를 꺼내기 위한 관문
+			//securityContextHolder
 			
 			logger.debug("[JwtAuthenticationFilter] 인증 완료 : ", auth.getName());
 			
@@ -67,3 +69,44 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
  * 
  * => 다음 필터 / 컨트롤러 처리.
  * */
+
+
+/*
+ * 전체 흐름 : http 요청 -> filterChain(여러 필터통과) -> securityContextHolder에 인증 정보 저장 -> controller 접근
+ * 
+ * getContext() : 현재 요청의 보안 컨텍스트를 가져오는 메서드
+ * => 이 컨텍스트 안에는 로그인한 사용자의 인증 정보(authentication)이 담겨있음
+ * => 누가 요청 했는가를 담은 객체를 꺼내기 위한 관문.
+ * 
+ * SecurityContextHolder : 스프링 시큐리티에서 현재 사용자의 인증 정보를 보관하는 저장소
+ * => 이 안에는 securityContext 객체가 있고 이 객체 속에는 Authentication 객체가 있음
+ * => 현재 요청의 인증 상태를 저장하고 꺼낼 수 있게 해주는 중앙보안 저장소
+ *
+ * HttpServletRequest : 사용자가 보낸 http 요청 정보를 담고 있는 객체사용자가 보낸 url, 헤더, 쿠키, 바디, 파라미터 등 모두 접근 가능
+ *  => 클라이언트가 서버에 보낸 모든 요청 정보가 담긴 객체.
+ *  요청 헤더에서 jwt 토큰을 꺼내기
+ *  
+ *  httpServletResponse : 서버가 클라이언트에게 응답을 보낸 사용하는 객체
+ *  http 상태코드, 헤더 설정, 바디 출력 등에 사용됨
+ *  => 서버가 클라이언트에게 응답을 구성하는데 사용하는 객체
+ *  
+ *  FilterChain : 여러개의 필터(보안, 로깅 등)을 연결하여 처리하는 체인
+ *  현재 필터가 끝나면 다음 필터로 요청을 넘기기 위해 사용
+ *  => 이걸 호출하지 않으면, 필터 체인 멈추고 뒤에 있는 컨트롤러에도 안감.
+ *  요청을 다음 필터 또는 컨트롤러로 넘기는 '필터 이동 레일'
+ *  
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
