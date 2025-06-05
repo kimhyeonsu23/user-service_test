@@ -58,6 +58,10 @@ public class User implements UserDetails {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt; // 수정시간.
+    
+    @Column(name = "badge")
+    @Builder.Default
+    private int userBadge = 0; // 뱃지 상태를 처음에는 0으로 초기화.
 
     // Spring Security 필수 메서드 구현
     @Override
