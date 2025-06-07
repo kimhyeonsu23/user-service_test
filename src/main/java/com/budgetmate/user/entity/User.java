@@ -76,9 +76,10 @@ public class User implements UserDetails {
     @Override public boolean isEnabled() { return true; }
 
     @PrePersist // entitiy가 처음 저장되기 전(insert전에)자동 호출됨.
-    protected void onCreate() {
+    protected void prePersist() {
         this.createdAt = new Date(); // 생성일 초기화.
         this.updatedAt = new Date(); // 수정일 초기화
+        this.userBadge = 0;
     }
 
     @PreUpdate // entitiy가 엡데이트 되기 전(update 전에)자동 호출됨.
